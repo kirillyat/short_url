@@ -1,0 +1,25 @@
+{% extends "base.html" %} {% block content %}
+<h2>Сократите свою ссылку</h2>
+
+<!-- Form for user input -->
+<form method="post" action=".">
+  {% csrf_token %}
+  <label for="original_url">Введите URL:</label>
+  <input
+    type="url"
+    id="original_url"
+    name="original_url"
+    required
+    placeholder="https://example.com"
+  />
+  <button type="submit">Сократить</button>
+</form>
+
+<!-- Display the shortened URL only if it exists in the context -->
+{% if short_url %}
+<br />
+<h3>Ваша сокращенная ссылка:</h3>
+<p>
+  <a href="{{ short_url }}" target="_blank">{{ short_url }}</a>
+</p>
+{% endif %} {% endblock %}
